@@ -4,8 +4,10 @@ import { View, Text, TextInput, Pressable, Alert, FlatList } from "react-native"
 import { useNavigation } from '@react-navigation/native';
 
 import { storeItem, getItems } from "../../utilities/http";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function CreateItem() {
+  const [isFetching, setIsFetching] = useState(true);
   const navigation = useNavigation();
   const [items, setItems] = useState({});
   const [item, setItem] = useState({
@@ -13,6 +15,13 @@ export default function CreateItem() {
     description: '',
     price: ''
   });
+
+  useEffect(() => {
+    getItems().then((res) => {
+      setItems(res);
+      setIsFetching(false);
+    });
+  }, []);
 
   function handleChange(attribute, value){
     setItem((currentState) => {
@@ -44,11 +53,9 @@ export default function CreateItem() {
     navigation.navigate('EditItem', {item: item});
   }
 
-  useEffect(() => {
-    getItems().then((res) => {
-      setItems(res)
-    });
-  }, []);
+  if(isFetching){
+    return <LoadingSpinner />
+  }
 
   return (
     <View className="flex-1 justify-center bg-orange-200">
