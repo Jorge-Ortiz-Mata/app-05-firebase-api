@@ -1,9 +1,9 @@
 import { View, Text, TextInput, Pressable, Alert, FlatList } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from "react";
-import { storeItem, getItems } from "../utilities/http";
+import { storeItem, getItems } from "../../utilities/http";
 
-export default function Index() {
+export default function CreateItem() {
   const [items, setItems] = useState({});
   const [item, setItem] = useState({
     title: '',
