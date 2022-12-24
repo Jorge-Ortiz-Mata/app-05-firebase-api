@@ -5,9 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 
 import { storeItem, getItems } from "../../utilities/http";
 import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorOverlay from "../components/ErrorOverlay";
 
 export default function CreateItem() {
   const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState();
+
   const navigation = useNavigation();
   const [items, setItems] = useState({});
   const [item, setItem] = useState({
@@ -19,8 +22,10 @@ export default function CreateItem() {
   useEffect(() => {
     getItems().then((res) => {
       setItems(res);
-      setIsFetching(false);
+    }).catch(error => {
+      setError('There was a problem')
     });
+    setIsFetching(false);
   }, []);
 
   function handleChange(attribute, value){
@@ -53,8 +58,16 @@ export default function CreateItem() {
     navigation.navigate('EditItem', {item: item});
   }
 
+  function closeErrorScreen(){
+    setError(null);
+  }
+
   if(isFetching){
     return <LoadingSpinner />
+  }
+
+  if (error && !isFetching ){
+    return <ErrorOverlay onConfirm={closeErrorScreen} />
   }
 
   return (
