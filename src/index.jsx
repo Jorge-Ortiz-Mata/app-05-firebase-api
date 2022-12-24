@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { useState } from "react";
 import { storeItem } from "../utilities/http";
@@ -20,7 +20,20 @@ export default function Index() {
   }
 
   function sendData(){
-    storeItem(item);
+    if(item.title.length == 0 || item.price.length == 0 || item.description.length == 0){
+      Alert.alert(
+        'Item has not been saved',
+        'Please, complete all the fields.',
+        [{title: 'Accept'}]
+      )
+    } else {
+      storeItem(item);
+      Alert.alert(
+        'Item Saved',
+        'Your item has been successfully saved',
+        [{title: 'Accept'}]
+        )
+    }
   }
 
   return (
