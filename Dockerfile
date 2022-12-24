@@ -6,7 +6,7 @@ RUN apt-get update \
   curl \
   sudo
 
-WORKDIR /workspaces/myapp
+WORKDIR /workspaces/app-05-firebase-api
 
 FROM base as development
 
@@ -21,4 +21,4 @@ RUN npm install -g expo-cli @expo/ngrok@^4.1.0
 
 COPY . .
 
-VOLUME ["/workspaces/myapp/node_modules"]
+VOLUME ["/workspaces/app-05-firebase-api/node_modules"]

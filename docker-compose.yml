@@ -1,10 +1,10 @@
 version: '3.9'
 services:
   development:
-    container_name: myapp
+    container_name: app-05-firebase-api
     build:
       context: ./
       dockerfile: Dockerfile
       target: development
     volumes:
-      - /workspaces/myapp/node_modules
+      - /workspaces/app-05-firebase-api/node_modules
