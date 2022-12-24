@@ -51,7 +51,7 @@ export default function Index() {
         <TextInput
           label="title"
           onChangeText={handleChange.bind(this, 'title')}
-          className="bg-white w-full my-2 border border-gray-300 p-2"
+          className="bg-white w-full my-2 border border-gray-300 p-2 rounded-lg"
           placeholder="My first item..."
         />
       </View>
@@ -59,7 +59,7 @@ export default function Index() {
         <Text className="font-semibold text-xl">Description:</Text>
         <TextInput
           onChangeText={handleChange.bind(this, 'description')}
-          className="bg-white w-full my-2 border border-gray-300 p-2"
+          className="bg-white w-full my-2 border border-gray-300 p-2 rounded-lg"
           placeholder="My first description..."
         />
       </View>
@@ -67,7 +67,7 @@ export default function Index() {
         <Text className="font-semibold text-xl">Price:</Text>
         <TextInput
           onChangeText={handleChange.bind(this, 'price')}
-          className="bg-white w-full my-2 border border-gray-300 p-2"
+          className="bg-white w-full my-2 border border-gray-300 p-2 rounded-lg"
           placeholder="24.99"
         />
       </View>
@@ -84,7 +84,7 @@ export default function Index() {
           keyExtractor={item => item.id}
           renderItem={(itemData) => {
             return(
-              <Text className="font-bold bg-gray-100">
+              <Text className="font-bold bg-gray-100 my-3 p-2">
                 {itemData.item.title}
               </Text>
             )
