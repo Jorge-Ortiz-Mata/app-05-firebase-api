@@ -6,6 +6,19 @@ export function storeItem(itemData) {
 }
 
 export async function getItems(){
+  const items = []
   const response = await axios.get(`${FIREBASE_URL}/items.json`);
-  return response.data;
+
+  for (const key in response.data){
+    const itemObj = {
+      id: key,
+      title: response.data[key].title,
+      description: response.data[key].description,
+      price: response.data[key].price
+    }
+
+    items.push(itemObj);
+  }
+
+  return items;
 }

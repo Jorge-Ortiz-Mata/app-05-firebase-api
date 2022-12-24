@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, Alert } from "react-native";
+import { View, Text, TextInput, Pressable, Alert, FlatList } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from "react";
 import { storeItem, getItems } from "../utilities/http";
@@ -77,6 +77,20 @@ export default function Index() {
       >
         <Text className="text-white font-bold text-base">Save Item</Text>
       </Pressable>
+      <View>
+        <FlatList
+          className="bg-white rounded-lg px-2 mt-5 mx-3 h-40"
+          data={items}
+          keyExtractor={item => item.id}
+          renderItem={(itemData) => {
+            return(
+              <Text className="font-bold bg-gray-100">
+                {itemData.item.title}
+              </Text>
+            )
+          }}
+          />
+        </View>
       <StatusBar style="dark" />
     </View>
   )
