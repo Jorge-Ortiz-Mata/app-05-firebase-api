@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FIREBASE_URL } from "@env"
 
-export function storeItems(itemData) {
+export function storeItem(itemData) {
   axios.post(`${FIREBASE_URL}/items.json`, itemData);
 }
