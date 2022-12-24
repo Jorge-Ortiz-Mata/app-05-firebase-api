@@ -56,7 +56,6 @@ export default function CreateItem() {
       <View className="items-start p-3">
         <Text className="font-semibold text-xl">Title:</Text>
         <TextInput
-          label="title"
           onChangeText={handleChange.bind(this, 'title')}
           className="bg-white w-full my-2 border border-gray-300 p-2 rounded-lg"
           placeholder="My first item..."

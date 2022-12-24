@@ -5,12 +5,12 @@ export function storeItem(itemData) {
   axios.post(`${FIREBASE_URL}/items.json`, itemData);
 }
 
-export function updateItem(itemData){
-  axios.put(`${FIREBASE_URL}/items/${itemData.id}.json`, itemData);
+export function updateItem(id, itemData){
+  axios.put(`${FIREBASE_URL}/items/${id}.json`, itemData);
 }
 
-export function deleteItem(itemData){
-  axios.delete(`${FIREBASE_URL}/items/${itemData.id}.json`);
+export function deleteItem(id){
+  axios.delete(`${FIREBASE_URL}/items/${id}.json`);
 }
 
 export async function getItems(){
