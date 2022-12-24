@@ -1,9 +1,10 @@
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { StatusBar } from 'expo-status-bar';
-import { useState } from "react";
-import { storeItem } from "../utilities/http";
+import { useEffect, useState } from "react";
+import { storeItem, getItems } from "../utilities/http";
 
 export default function Index() {
+  const [items, setItems] = useState({});
   const [item, setItem] = useState({
     title: '',
     description: '',
@@ -35,6 +36,12 @@ export default function Index() {
         )
     }
   }
+
+  useEffect(() => {
+    getItems().then((res) => {
+      setItems(res)
+    });
+  }, []);
 
   return (
     <View className="flex-1 justify-center bg-orange-200">
