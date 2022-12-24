@@ -1,9 +1,12 @@
-import { View, Text, TextInput, Pressable, Alert, FlatList } from "react-native";
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from "react";
+import { StatusBar } from 'expo-status-bar';
+import { View, Text, TextInput, Pressable, Alert, FlatList } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
 import { storeItem, getItems } from "../../utilities/http";
 
 export default function CreateItem() {
+  const navigation = useNavigation();
   const [items, setItems] = useState({});
   const [item, setItem] = useState({
     title: '',
@@ -35,6 +38,10 @@ export default function CreateItem() {
         [{title: 'Accept'}]
         )
     }
+  }
+
+  function changeScreen(item){
+    navigation.navigate('EditItem', {item: item});
   }
 
   useEffect(() => {
@@ -84,9 +91,11 @@ export default function CreateItem() {
           keyExtractor={item => item.id}
           renderItem={(itemData) => {
             return(
-              <Text className="font-bold bg-gray-100 my-3 p-2">
-                {itemData.item.title}
-              </Text>
+              <Pressable onPress={changeScreen.bind(this, itemData.item)}>
+                <Text className="font-bold bg-gray-100 my-3 p-2">
+                  {itemData.item.title}
+                </Text>
+              </Pressable>
             )
           }}
           />
