@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Text, TextInput, View, Pressable, Alert } from "react-native";
 import { StatusBar } from 'expo-status-bar';
-import { updateItem } from "../../utilities/http";
+import { updateItem, deleteItem } from "../../utilities/http";
 
 export default function EditItem({route}) {
   const [item, setItem] = useState(route.params.item);
@@ -15,7 +15,18 @@ export default function EditItem({route}) {
     })
   }
 
-  function sendData(){
+  function confirmDelete(){
+    Alert.alert(
+      `Delete: ${item.title}`,
+      'Are you sure you want to delete this item?',
+      [
+        { text: 'Yes', onPress: async () => await deleteItem(item.id) },
+        { text: 'No', onPress: () => console.log('Canceling...') }
+      ]
+    );
+  }
+
+  async function sendData(){
     if(item.title.length == 0 || item.price.length == 0 || item.description.length == 0){
       Alert.alert(
         'Item has not been saved',
@@ -26,7 +37,7 @@ export default function EditItem({route}) {
       const params = {
         title: item.title, description: item.description, price: item.price
       }
-      updateItem(item.id, params);
+      await updateItem(item.id, params);
       Alert.alert(
         'Item Updated',
         'Your item has been successfully updated',
@@ -70,6 +81,12 @@ export default function EditItem({route}) {
         onPress={sendData}
       >
         <Text className="text-white font-bold text-base">Update Item</Text>
+      </Pressable>
+      <Pressable
+        className="mx-auto bg-red-600 p-3 rounded-lg mt-16"
+        onPress={confirmDelete}
+      >
+        <Text className="text-white font-bold text-base">Delete Item</Text>
       </Pressable>
       <StatusBar style="dark" />
     </View>
