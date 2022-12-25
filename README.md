@@ -1,30 +1,22 @@
-# React Native, Docker and TailwindCSS Quickstart.
+# The Items App.
 
-![](./images/01.png)
+The Items App allows users to create, edit, update and delete items from the database.
+A Firebase database was created in order to store all the items typped by the user.
 
-React native and Docker Quickstart offers basic configuration you can use to create your own React Native Apps within Docker Containers.
+Each item has the next properties:
+- Title.
+- Description.
+- Price.
 
-## What you need.
+## Screenshots.
 
-There are some specific things you must need to start building your mobile apps.
+<div style="display: flex; gap: 10px;">
+  <img src='./assets/01.jpg' width='200'>
+  <img src='./assets/02.jpg' width='200'>
+</div>
 
-1. VS Code installed in your local machine.
-2. Install **Dev Containers** VS Code extension.
-3. Have Docker installed and running.
+## Author.
 
-## Steps.
-
-In order to run this app in your local enviroment, follow this steps:
-
-1. Clone this repo in your computer.
-2. Open this folder with VS Code and run the option: **Rebuild image without cache and reopen in a container**
-3. Wait until the container is finished.
-4. Enjoy!
-
-## Quick Notes.
-
-By default, the container will open the project using the **jorge** user. You can change it by modifying the Dockerfile and the script.sh, in order to give sudo permissions.
-
-There are some tasks that you have to run using the **sudo** command at the beginning of all command lines.
-
-Visit this Github repo where you can find more information regarding with changing the default username on your dev container: https://github.com/Jorge-Ortiz-Mata/node-16-docker-enviroment
+- Jorge Ortiz.
+- Software engineer.
+- San Luis Potosí, S.L.P. México.
